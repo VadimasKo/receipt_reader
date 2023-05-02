@@ -24,7 +24,7 @@ export default function Layout() {
           name="index"
           options={{
             title: "Dashboard",
-            tabBarIcon:  () => <MaterialIcons name="dashboard" size={24} color="#E1EFE6" />,
+            tabBarIcon:  () => <MaterialIcons name='list-alt' size={24} color="#E1EFE6" />,
           }}
         />
         <Tabs.Screen
