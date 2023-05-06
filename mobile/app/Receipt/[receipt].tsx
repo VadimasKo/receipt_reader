@@ -1,5 +1,7 @@
+import { useRoute } from '@react-navigation/native';
 import { Text } from "react-native";
 
 export default function Receipt() {
-  return <Text>Home page</Text>;
+  // const route: any = useRoute();
+  return <Text>Receiptable</Text>;
 }

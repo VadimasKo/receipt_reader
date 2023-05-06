@@ -1,5 +1,3 @@
-import { Text } from "react-native";
+import Dashboard from "./Dashboard/index";
 
-export default function Dashboard() {
-  return <Text>DashBoard</Text>;
-}
+export default Dashboard

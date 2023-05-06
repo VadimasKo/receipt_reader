@@ -19,7 +19,7 @@ export default function Layout() {
   if (!fontsLoaded) return null;
   return (
     <ThemeProvider value={CustomTheme}>
-      <Tabs>
+      <Tabs initialRouteName="Scanner/index">
         <Tabs.Screen
           name="index"
           options={{
@@ -36,6 +36,10 @@ export default function Layout() {
         />
         <Tabs.Screen
           name='Receipt/[receipt]'
+          options={{ title: 'Receipt', href: null}}
+        />
+        <Tabs.Screen
+          name='Dashboard/index'
           options={{href: null}}
         />
       </Tabs>
