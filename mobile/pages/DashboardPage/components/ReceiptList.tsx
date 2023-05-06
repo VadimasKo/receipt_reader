@@ -1,26 +1,26 @@
-import { View, StyleSheet, ViewStyle, TextStyle, Pressable, Alert } from "react-native";
+import { useRouter } from "expo-router";
+import { View, StyleSheet, Pressable } from "react-native";
 import CustomCard from "../../../components/CustomCard";
 import CustomText from "../../../components/CustomText";
 import { Receipt } from "../../../types";
-import { Redirect, useNavigation } from "expo-router";
-import { useState } from "react";
 
 export default function ReceiptList() {
-  const { navigate }: any = useNavigation()
+  const router = useRouter()
 
   return (
     <CustomCard style={styles.receiptList}>
       <CustomText style={styles.title}>Recent Receipts</CustomText>
       {placeholderReceipts.map(receipt => (
-        <Pressable onPress={() => navigate(`/Receipt/${receipt.id}`)} key={receipt.id}>
-          <View style={styles.receiptLine} >  
-            <CustomText style={styles.vendorName}>{receipt.vendorName}</CustomText>
-            <CustomText style={styles.amount}>${receipt.amount}</CustomText>
-          </View>
+        <Pressable
+          onPress={() => router.push(`Receipt/${receipt.id}`)}
+          style={styles.receiptLine}
+          key={receipt.id}
+        >
+          <CustomText style={styles.vendorName}>{receipt.vendorName}</CustomText>
+          <CustomText style={styles.amount}>${receipt.amount}</CustomText>
         </Pressable>
       ))}
       <CustomText style={styles.loadMore}>Load more</CustomText>
-      {/* {goToId && <Redirect href={`Receipt/${goToId}`} />} */}
     </CustomCard>
   )
 }
@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
     width: '80%',
     paddingBottom: 18,
     rowGap: 16,
-    
-    // backgroundColor: 'goldenrod',
-    // margin: 'auto'
-    // color: '#E1EFE6',
   },
   
   title: {
@@ -43,10 +39,9 @@ const styles = StyleSheet.create({
 
   receiptLine: {
     flexDirection: 'row',
+    width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // paddingBottom: 4,
-    // marginBottom: 4,
 
     borderColor: '#66666E',
     borderWidth: 0,
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
 
   vendorName: {
     fontSize: 18,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
   },
 
   amount: {
@@ -70,8 +65,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
-
-
 
 const placeholderReceipts: Receipt[] = [
   {

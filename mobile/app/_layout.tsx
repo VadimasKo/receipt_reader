@@ -35,7 +35,7 @@ export default function Layout() {
           }}
         />
         <Tabs.Screen
-          name='Receipt/[receipt]'
+          name='Receipt/[id]'
           options={{ title: 'Receipt', href: null}}
         />
         <Tabs.Screen
