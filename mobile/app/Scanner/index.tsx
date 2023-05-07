@@ -1,5 +1,3 @@
-import { Text } from "react-native";
+import ScannerPage from "../../pages/ScannerPage/ScannerPage";
 
-export default function Scanner() {
-  return <Text>Scanner</Text>
-}
+export default ScannerPage
