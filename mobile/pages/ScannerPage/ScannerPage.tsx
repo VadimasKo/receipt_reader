@@ -6,13 +6,32 @@ import CircleButton from '../../components/CircleButton';
 import ReceiptCard from '../../components/ReceiptCard';
 import CustomButton from '../../components/CustomButton';
 import { useRouter } from 'expo-router';
+import storage from '../../components/storage';
+import PageTitle from '../../components/PageTitle';
 
 export default function() {
   const [imageUri, receipt, pickImage, takePhoto] = useImagePicker()
   const router = useRouter()
 
+  const saveReceipt = async () => {
+    if (!receipt) return
+    let stats = await storage.getStats();
+    stats.food += receipt.stats.food
+    stats.appliance += receipt.stats.appliance
+    stats.other += receipt.stats.other
+    stats.total += receipt.stats.total
+
+    await Promise.all([
+      storage.storeStats(stats),
+      storage.storeReceipt(receipt)
+    ])
+  
+    router.push('/')
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.page}>
+      <PageTitle title='Scanner' />
       <View style={styles.topContainer}>
         <Pressable onPress={pickImage} style={styles.imageContainer}>
           <Image
@@ -26,8 +45,8 @@ export default function() {
             <CustomButton
               style={styles.upload}
               textStyle={styles.uploadText}
-              onClick={() => router.push(`Receipt/1`)}
-              text='Upload'
+              onClick={saveReceipt}
+              text='Save'
             />
           </ReceiptCard>
         )}
@@ -48,7 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    rowGap: 18,
+    rowGap: 25,
     marginTop: 12,
   },
 

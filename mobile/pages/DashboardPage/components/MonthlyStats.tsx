@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import storage from '../../../components/storage'
 import StatCard from '../../../components/StatCard';
 import CustomText from '../../../components/CustomText';
 import { Stats } from '../../../types';
@@ -9,7 +10,7 @@ export default function MonhtlyStats() {
   const [stats, setStats] = useState<Stats>()
 
   useEffect(() => {
-    setStats(StatsPlaceholder)
+    storage.getStats().then(stats => setStats(stats))
   }, [])
 
   if (!stats) return <CustomText>Loading</CustomText>
@@ -24,10 +25,3 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 })
-
-const StatsPlaceholder: Stats = {
-  total: 130,
-  food: 30,
-  appliance: 50,
-  other: 20,
-}

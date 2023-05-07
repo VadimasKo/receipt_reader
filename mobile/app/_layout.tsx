@@ -22,6 +22,7 @@ export default function Layout() {
         initialRouteName='Scanner/index'
         screenOptions={{
           headerTitleStyle: { fontFamily: 'default' },
+          header: () => null,
           tabBarIconStyle: { display: "none" },
           tabBarStyle: { height: 60 },
           tabBarLabelStyle: {
@@ -33,7 +34,7 @@ export default function Layout() {
       >
         <Tabs.Screen
           name='index'
-          options={{ title: 'Dashboard' }}
+          options={{ title: 'Dashboard',  unmountOnBlur: true }}
         />
         <Tabs.Screen
           name='Scanner/index'
@@ -41,7 +42,7 @@ export default function Layout() {
         />
         <Tabs.Screen
           name='Receipt/[id]'
-          options={{ title: 'Receipt', href: null }}
+          options={{ title: 'Receipt', href: null,  unmountOnBlur: true }}
         />
         <Tabs.Screen
           name='Dashboard/index'

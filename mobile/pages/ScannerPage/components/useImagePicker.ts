@@ -9,10 +9,11 @@ export default function useImagePicker() {
   const [receipt, setReceipt] = useState<Receipt>()
 
   useEffect(() => {
-    // UPLOAD IMAGE AND GET SCANNED INFO
-    if (imageUri) setReceipt(receiptPlaceholder) 
-    // setReceipt(receiptPlaceholder) 
-
+    if (imageUri) {
+      let receipt = receiptPlaceholder;
+      receipt.meta.id = Math.random().toString(36).substring(2, 10);
+      setReceipt(receiptPlaceholder)
+    }
   }, [imageUri])
 
   const pickImage = async () => {
@@ -58,7 +59,7 @@ const receiptPlaceholder: Receipt = {
   meta: {
     id: '1',
     vendorName: 'Maxima',
-    cost: 12,
+    cost: 15,
     date: '2022-11-23'
   },
   content: [
@@ -70,5 +71,11 @@ const receiptPlaceholder: Receipt = {
       product: 'Virdulys',
       cost: 10,
     },
-  ]
+  ],
+  stats: {
+    food: 5,
+    appliance: 10,
+    other: 0,
+    total: 15,
+  }
 }

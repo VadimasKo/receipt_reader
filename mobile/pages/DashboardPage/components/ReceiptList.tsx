@@ -3,14 +3,21 @@ import { StyleSheet, Pressable } from 'react-native';
 import CustomCard from '../../../components/CustomCard';
 import CustomText from '../../../components/CustomText';
 import { ReceiptMeta } from '../../../types';
+import { useEffect, useState } from 'react';
+import storage from '../../../components/storage';
 
 export default function ReceiptList() {
+  const [receipts, setReceipts] = useState<ReceiptMeta[]>()
   const router = useRouter()
+
+  useEffect(() => {
+    storage.getMetaList().then(list => setReceipts(list))
+  }, [])
 
   return (
     <CustomCard style={styles.receiptList}>
       <CustomText style={styles.title}>Recent Receipts</CustomText>
-      {placeholderReceipts.map(({ id, cost, vendorName }) => (
+      {receipts?.map(({ id, cost, vendorName }) => (
         <Pressable
           onPress={() => router.push(`Receipt/${id}`)}
           style={styles.receiptLine}
@@ -65,24 +72,3 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
-
-const placeholderReceipts: ReceiptMeta[] = [
-  {
-    id: '1',
-    vendorName: 'Maxima',
-    cost: 10,
-    date: '2022-11-12'
-  },
-  {
-    id: '2',
-    vendorName: 'Norfa',
-    cost: 20,
-    date: '2022-10-12'
-  },
-  {
-    id: '3',
-    vendorName: 'Casino',
-    cost: 100,
-    date: '2022-9-12'
-  },
-]
