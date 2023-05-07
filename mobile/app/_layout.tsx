@@ -1,4 +1,3 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { SplashScreen, Tabs } from 'expo-router';
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react';
@@ -19,20 +18,26 @@ export default function Layout() {
   if (!fontsLoaded) return null;
   return (
     <ThemeProvider value={CustomTheme}>
-      <Tabs initialRouteName='Scanner/index'>
+      <Tabs
+        initialRouteName='Scanner/index'
+        screenOptions={{
+          headerTitleStyle: { fontFamily: 'default' },
+          tabBarIconStyle: { display: "none" },
+          tabBarStyle: { height: 60 },
+          tabBarLabelStyle: {
+            fontFamily: 'default',
+            fontSize: 16,
+            paddingBottom: 20,
+          }
+        }}
+      >
         <Tabs.Screen
           name='index'
-          options={{
-            title: 'Dashboard',
-            tabBarIcon:  () => <MaterialIcons name='list-alt' size={24} color='#E1EFE6' />,
-          }}
+          options={{ title: 'Dashboard' }}
         />
         <Tabs.Screen
           name='Scanner/index'
-          options={{
-            title: 'Scanner',
-            tabBarIcon:  () => <MaterialIcons name='camera-alt' size={24} color='#E1EFE6' />,
-          }}
+          options={{ title: 'Scanner' }}
         />
         <Tabs.Screen
           name='Receipt/[id]'
@@ -51,7 +56,7 @@ export default function Layout() {
 const CustomTheme = {
   dark: true,
   colors: {
-    primary: '#FF8C42',
+    primary: '#E1EFE6',
     background: '#000103 ',
     card: '#000103',
     text: '#E1EFE6',
