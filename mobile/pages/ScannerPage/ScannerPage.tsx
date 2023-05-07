@@ -1,34 +1,40 @@
-import { View, StyleSheet, ScrollView, } from "react-native";
 import { Image } from 'expo-image';
-import CustomText from "../../components/CustomText";
-import CustomButton from "../../components/CustomButton";
-import useImagePicker from "./components/useImagePicker";
-import React from "react";
+import { View, StyleSheet, ScrollView, Pressable, } from 'react-native';
+import CustomText from '../../components/CustomText';
+import useImagePicker from './components/useImagePicker';
+import CircleButton from '../../components/CircleButton';
+import ScanResult from './components/ScanResults';
 
 export default function() {
-  const [imageUri, pickImage, takePhoto] = useImagePicker()
-  const tempUri = 'file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fmobile-8c805263-fac2-4bf4-8176-de15614075d0/ImagePicker/c2ae414b-ff2c-40c2-b336-7f7c64d78f90.png'
-
-  console.log(imageUri)
+  const [imageUri, receipt, pickImage, takePhoto] = useImagePicker()
 
   return (
     <ScrollView contentContainerStyle={styles.page}>
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{ uri: tempUri }}
-          transition={700}
-        />
+      <View style={styles.topContainer}>
+        <Pressable onPress={pickImage} style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            source={{ uri: imageUri }}
+            transition={700}
+          />
+        </Pressable>
+        {receipt && <ScanResult style={styles.result} receipt={receipt} />}
       </View>
-      <CustomButton style={undefined} text='Take a photo' onClick={takePhoto} />
-      <CustomButton style={undefined} text='Pick from gallery' onClick={pickImage} />
+      <View style={styles.captureView}>
+        <CircleButton  onClick={takePhoto}/>
+        <Pressable onPress={pickImage}>
+          <CustomText style={styles.pickText}>Pick from gallery</CustomText>
+        </Pressable>
+      </View>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   page: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-between',
     rowGap: 18,
     marginTop: 12,
   },
@@ -38,18 +44,39 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   },
 
-  container: {
-    width:'80%',
+  topContainer: {
+    alignItems: 'center',
+    rowGap: 20,
+    width: '80%',
+  },
+
+  imageContainer: {
+    width:'60%',
     borderRadius: 16,
     padding: 8,
-    borderColor: 'white',
+    borderColor: '#66666E',
     borderWidth: 1,
-
+    justifyContent: 'flex-start',
   },
+
   image: {
     width: '100%',
-    height: undefined,
     aspectRatio: 1,
   },
 
+  captureView: {
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    rowGap: 10,
+    marginBottom: 20,
+  },
+
+  result: {
+    width: '100%',
+  },
+
+  pickText: {
+    color: '#66666E',
+  }
 })

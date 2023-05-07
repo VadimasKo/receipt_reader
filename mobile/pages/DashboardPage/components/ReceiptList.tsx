@@ -1,8 +1,8 @@
-import { useRouter } from "expo-router";
-import { View, StyleSheet, Pressable } from "react-native";
-import CustomCard from "../../../components/CustomCard";
-import CustomText from "../../../components/CustomText";
-import { Receipt } from "../../../types";
+import { useRouter } from 'expo-router';
+import { StyleSheet, Pressable } from 'react-native';
+import CustomCard from '../../../components/CustomCard';
+import CustomText from '../../../components/CustomText';
+import { ReceiptMeta } from '../../../types';
 
 export default function ReceiptList() {
   const router = useRouter()
@@ -10,14 +10,14 @@ export default function ReceiptList() {
   return (
     <CustomCard style={styles.receiptList}>
       <CustomText style={styles.title}>Recent Receipts</CustomText>
-      {placeholderReceipts.map(receipt => (
+      {placeholderReceipts.map(({ id, cost, vendorName }) => (
         <Pressable
-          onPress={() => router.push(`Receipt/${receipt.id}`)}
+          onPress={() => router.push(`Receipt/${id}`)}
           style={styles.receiptLine}
-          key={receipt.id}
+          key={id}
         >
-          <CustomText style={styles.vendorName}>{receipt.vendorName}</CustomText>
-          <CustomText style={styles.amount}>${receipt.amount}</CustomText>
+          <CustomText style={styles.vendorName}>{vendorName}</CustomText>
+          <CustomText style={styles.cost}>${cost}</CustomText>
         </Pressable>
       ))}
       <CustomText style={styles.loadMore}>Load more</CustomText>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderTopWidth: 0,
     borderBottomWidth: 1,
-    borderStyle: "dashed"
+    borderStyle: 'dashed'
   },
 
   vendorName: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
 
-  amount: {
+  cost: {
     fontSize: 14,
     color: '#E36414',
   },
@@ -66,23 +66,23 @@ const styles = StyleSheet.create({
   }
 })
 
-const placeholderReceipts: Receipt[] = [
+const placeholderReceipts: ReceiptMeta[] = [
   {
     id: '1',
     vendorName: 'Maxima',
-    amount: 10,
+    cost: 10,
     date: '2022-11-12'
   },
   {
     id: '2',
     vendorName: 'Norfa',
-    amount: 20,
+    cost: 20,
     date: '2022-10-12'
   },
   {
     id: '3',
     vendorName: 'Casino',
-    amount: 100,
+    cost: 100,
     date: '2022-9-12'
   },
 ]
