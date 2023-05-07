@@ -1,7 +1,8 @@
-import { ScrollView, StyleSheet } from "react-native";
-import CustomButton from "../../components/CustomButton";
-import ReceiptList from "./components/ReceiptList";
-import { Link, useRootNavigation, useRouter } from "expo-router";
+import { ScrollView, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import CustomButton from '../../components/CustomButton';
+import ReceiptList from './components/ReceiptList';
+import MonhtlyStats from './components/MonthlyStats';
 
 
 export default function DashboardPage() {
@@ -10,6 +11,7 @@ export default function DashboardPage() {
     <ScrollView contentContainerStyle={styles.page}>
       <CustomButton style={styles.scanButton} text='Scan Check' onClick={() => router.push('Scanner/')} />
       <ReceiptList />
+      <MonhtlyStats />
     </ScrollView>
   )
 }

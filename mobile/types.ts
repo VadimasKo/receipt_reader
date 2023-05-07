@@ -21,6 +21,7 @@ export type Receipt = {
 export type StatLine = ['food' | 'appliance' | 'other', number]
 
 export type Stats = {
+  total: number,
   food: number,
   appliance: number,
   other: number,

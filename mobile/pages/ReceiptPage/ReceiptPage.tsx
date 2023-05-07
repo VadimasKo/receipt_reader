@@ -1,10 +1,10 @@
-import { ScrollView, View, StyleSheet } from "react-native";
-import { Receipt, Stats } from "../../types";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "expo-router";
-import ReceiptCard from "../../components/ReceiptCard";
-import CustomButton from "../../components/CustomButton";
-import StatCard from "../../components/StatCard";
+import { ScrollView, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'expo-router';
+import { Receipt, Stats } from '../../types';
+import ReceiptCard from '../../components/ReceiptCard';
+import CustomButton from '../../components/CustomButton';
+import StatCard from '../../components/StatCard';
 
 
 export default function() {
@@ -77,6 +77,7 @@ const receiptPlaceholder: Receipt = {
 
 
 const StatsPlaceholder: Stats = {
+  total: 20,
   food: 25,
   appliance: 50,
   other: 25,

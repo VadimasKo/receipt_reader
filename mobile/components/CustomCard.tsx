@@ -1,4 +1,4 @@
-import { View, ViewProps, StyleSheet } from "react-native";
+import { View, ViewProps, StyleSheet } from 'react-native';
 
 
 export default function CustomCard({ style, ...rest }: ViewProps) {

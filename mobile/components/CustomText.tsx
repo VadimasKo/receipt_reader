@@ -1,4 +1,4 @@
-import { Text, TextProps, StyleSheet } from "react-native";
+import { Text, TextProps, StyleSheet } from 'react-native';
 
 
 const CustomText = ({ style, ...rest }: TextProps) => (

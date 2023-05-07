@@ -1,6 +1,6 @@
-import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native";
-import { StyleSheet } from "react-native";
-import CustomText from "./CustomText";
+import { Pressable, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
+import CustomText from './CustomText';
 
 interface Props {
   text: string,

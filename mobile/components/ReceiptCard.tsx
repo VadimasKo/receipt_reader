@@ -1,8 +1,8 @@
-import { View, StyleSheet, ViewStyle } from "react-native";
-import CustomCard from "./CustomCard";
-import CustomText from "./CustomText";
-import { Receipt } from "../types";
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
+import { View, StyleSheet, ViewStyle } from 'react-native';
+import { Receipt } from '../types';
+import CustomCard from './CustomCard';
+import CustomText from './CustomText';
 
 interface Props {
   receipt: Receipt

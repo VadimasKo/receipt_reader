@@ -1,8 +1,8 @@
-import { SplashScreen, Tabs } from "expo-router";
 import { MaterialIcons } from '@expo/vector-icons';
+import { SplashScreen, Tabs } from 'expo-router';
 import { useFonts } from 'expo-font'
-import { ThemeProvider } from "@react-navigation/native";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { ThemeProvider } from '@react-navigation/native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,19 +19,19 @@ export default function Layout() {
   if (!fontsLoaded) return null;
   return (
     <ThemeProvider value={CustomTheme}>
-      <Tabs initialRouteName="Scanner/index">
+      <Tabs initialRouteName='Scanner/index'>
         <Tabs.Screen
-          name="index"
+          name='index'
           options={{
-            title: "Dashboard",
-            tabBarIcon:  () => <MaterialIcons name='list-alt' size={24} color="#E1EFE6" />,
+            title: 'Dashboard',
+            tabBarIcon:  () => <MaterialIcons name='list-alt' size={24} color='#E1EFE6' />,
           }}
         />
         <Tabs.Screen
-          name="Scanner/index"
+          name='Scanner/index'
           options={{
-            title: "Scanner",
-            tabBarIcon:  () => <MaterialIcons name="camera-alt" size={24} color="#E1EFE6" />,
+            title: 'Scanner',
+            tabBarIcon:  () => <MaterialIcons name='camera-alt' size={24} color='#E1EFE6' />,
           }}
         />
         <Tabs.Screen

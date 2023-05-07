@@ -1,17 +1,17 @@
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { StatLine, Stats } from "../types";
-import CustomCard from "./CustomCard";
-import CustomText from "./CustomText";
+import { View, StyleSheet, ViewStyle } from 'react-native';
+import { StatLine, Stats } from '../types';
+import CustomCard from './CustomCard';
+import CustomText from './CustomText';
 
 interface Props {
   stats: Stats
   style?: ViewStyle
 }
 
-export default function StatCard({ stats, style }: Props) {
+export default function StatCard({ stats,  style }: Props) {
   return (
     <CustomCard style={[styles.statCard, style]}>
-      <CustomText style={styles.title}>Total spending ${stats.appliance + stats.food + stats.other}</CustomText>
+      <CustomText style={styles.title}>Total spending ${stats.total}</CustomText>
       <View style={[styles.food, { width: `${stats.food}%` }]}>
         <CustomText>Food {stats.food}%</CustomText>
       </View>

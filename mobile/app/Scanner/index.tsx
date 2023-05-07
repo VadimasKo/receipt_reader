@@ -1,3 +1,3 @@
-import ScannerPage from "../../pages/ScannerPage/ScannerPage";
+import ScannerPage from '../../pages/ScannerPage/ScannerPage';
 
 export default ScannerPage
