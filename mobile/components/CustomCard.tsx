@@ -3,7 +3,7 @@ import { View, ViewProps, StyleSheet } from "react-native";
 
 export default function CustomCard({ style, ...rest }: ViewProps) {
   return (
-    <View style={[styles.card,style]} {...rest}/>
+    <View style={[styles.card, style]} {...rest}/>
   ) 
 }
 

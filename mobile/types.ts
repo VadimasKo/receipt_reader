@@ -17,3 +17,11 @@ export type Receipt = {
   meta: ReceiptMeta,
   content: ReceiptContent
 }
+
+export type StatLine = ['food' | 'appliance' | 'other', number]
+
+export type Stats = {
+  food: number,
+  appliance: number,
+  other: number,
+}

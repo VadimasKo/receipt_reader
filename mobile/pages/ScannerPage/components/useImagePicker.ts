@@ -11,6 +11,8 @@ export default function useImagePicker() {
   useEffect(() => {
     // UPLOAD IMAGE AND GET SCANNED INFO
     if (imageUri) setReceipt(receiptPlaceholder) 
+    // setReceipt(receiptPlaceholder) 
+
   }, [imageUri])
 
   const pickImage = async () => {

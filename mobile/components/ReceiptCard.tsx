@@ -1,35 +1,28 @@
-import { useRouter } from 'expo-router';
-import { View, ViewStyle, StyleSheet } from 'react-native';
-import { Receipt } from '../../../types';
-import CustomText from '../../../components/CustomText';
-import CustomCard from '../../../components/CustomCard';
-import CustomButton from '../../../components/CustomButton';
+import { View, StyleSheet, ViewStyle } from "react-native";
+import CustomCard from "./CustomCard";
+import CustomText from "./CustomText";
+import { Receipt } from "../types";
+import { ReactNode } from "react";
 
 interface Props {
   receipt: Receipt
   style?: ViewStyle
+  children?: ReactNode
 }
 
-export default function ScanResult({ receipt, style }: Props) {
-  const router = useRouter()
-
+export default function ReceiptCard({ receipt, style, children }: Props) {
   return (
-    <CustomCard style={[style, styles.container]}>
+    <CustomCard style={style}>
       <CustomText style={styles.title}>{receipt.meta.vendorName} {receipt.meta.date}</CustomText>
-      <View style={styles.content}>
+      <View style={styles.linesContainer}>
         {receipt.content.map(line => (
-          <View style={styles.receiptLine}>
+          <View style={styles.receiptLine} key={line.product}>
             <CustomText style={styles.product}>{line.product}</CustomText>
             <CustomText style={styles.cost}>${line.cost}</CustomText>
           </View>
         ))}
       </View>
-      <CustomButton
-        style={styles.upload}
-        textStyle={styles.uploadText}
-        onClick={() => router.push(`Receipt/1`)}
-        text='Upload'
-      />
+      {children}
     </CustomCard>
   )
 }
@@ -40,12 +33,10 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
 
-  container: {
-    rowGap: 16,
-  },
-
-  content: {
+  linesContainer: {
     rowGap: 12,
+    marginTop: 20,
+    marginBottom: 20,
   },
 
   receiptLine: {
@@ -70,12 +61,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#E36414',
   },
-
-  upload: {
-    alignSelf: 'center',
-  },
-
-  uploadText: {
-    color: '#E36414'
-  }
 })

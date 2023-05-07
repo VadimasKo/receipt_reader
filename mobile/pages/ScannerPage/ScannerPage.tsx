@@ -3,10 +3,13 @@ import { View, StyleSheet, ScrollView, Pressable, } from 'react-native';
 import CustomText from '../../components/CustomText';
 import useImagePicker from './components/useImagePicker';
 import CircleButton from '../../components/CircleButton';
-import ScanResult from './components/ScanResults';
+import ReceiptCard from '../../components/ReceiptCard';
+import CustomButton from '../../components/CustomButton';
+import { useRouter } from 'expo-router';
 
 export default function() {
   const [imageUri, receipt, pickImage, takePhoto] = useImagePicker()
+  const router = useRouter()
 
   return (
     <ScrollView contentContainerStyle={styles.page}>
@@ -18,7 +21,17 @@ export default function() {
             transition={700}
           />
         </Pressable>
-        {receipt && <ScanResult style={styles.result} receipt={receipt} />}
+        {receipt && (
+          <ReceiptCard receipt={receipt} style={styles.result}>
+            <CustomButton
+              style={styles.upload}
+              textStyle={styles.uploadText}
+              onClick={() => router.push(`Receipt/1`)}
+              text='Upload'
+            />
+          </ReceiptCard>
+        )}
+
       </View>
       <View style={styles.captureView}>
         <CircleButton  onClick={takePhoto}/>
@@ -61,6 +74,7 @@ const styles = StyleSheet.create({
 
   image: {
     width: '100%',
+    borderRadius: 16,
     aspectRatio: 1,
   },
 
@@ -78,5 +92,13 @@ const styles = StyleSheet.create({
 
   pickText: {
     color: '#66666E',
-  }
+  },
+
+  upload: {
+    alignSelf: 'center',
+  },
+
+  uploadText: {
+    color: '#E36414'
+  },
 })
