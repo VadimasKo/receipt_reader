@@ -37,11 +37,11 @@ export default function Layout() {
         />
         <Tabs.Screen
           name='Scanner/index'
-          options={{ title: 'Scanner' }}
+          options={{ title: 'Scanner', unmountOnBlur: true }}
         />
         <Tabs.Screen
           name='Receipt/[id]'
-          options={{ title: 'Receipt', href: null}}
+          options={{ title: 'Receipt', href: null }}
         />
         <Tabs.Screen
           name='Dashboard/index'
